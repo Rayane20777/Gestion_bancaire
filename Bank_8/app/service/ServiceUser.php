@@ -35,6 +35,36 @@
 
 
         }
+        public function edit(User $user){
+
+            $pdo = $this->connect();
+
+            $id = $user->getId();
+            $username = $user->getUsername();
+            $password = $user->getPassword();
+            $nationality = $user->getNationality();
+            $gender = $user->getGender();
+            $address_id = $user->getAddress_id();
+            $agency_id = $user->getAgency_id();
+            $date = $user->getDate();
+            
+            $sql = "UPDATE `user` SET `username`=:username,`password`=:password,`nationality`=:nationality,`gender`=:gender,`address_id`=:address_id,`agency_id`=:agency_id,`date`=:date WHERE `id`=:id";
+
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":username", $username);
+            $stmt->bindParam(":password", $password);
+            $stmt->bindParam(":nationality", $nationality);
+            $stmt->bindParam(":gender", $gender);
+            $stmt->bindParam(":address_id", $address_id);
+            $stmt->bindParam(":agency_id", $agency_id);
+            $stmt->bindParam(":date", $date);
+
+            $stmt->execute();
+
+
+        }
 
         public function delete($id){
 

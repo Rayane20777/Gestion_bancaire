@@ -60,6 +60,7 @@
                 <h1 class="text-2xl font-semibold">Welcome to our website</h1>
                 
     <form action="../app/controllers/User.php" method="post">
+    <input type="hidden" name="action" value="addUser">
         <input type="text" name="username" id="username" placeholder="username">
         <input type="text" name="password" id="password" placeholder="password">
         <input type="text" name="nationality" id="nationality" placeholder="nationality">
@@ -81,6 +82,7 @@
                 <th>nationality</th>
                 <th>gender</th>
                 <th>address_id</th>
+                <th>agency_id</th>
                 <th>date</th>
             </tr>
         </thead>
@@ -95,6 +97,38 @@
                     <td><?=$user['address_id']?></td>
                     <td><?=$user['agency_id']?></td>
                     <td><?=$user['date']?></td>
+                    <form action="" method="post">
+                        <input type="hidden" name="action" value="editUser">
+                        <input type="hidden" name="id" value="<?=$user['id']?>">
+                        <td>
+                            <input type="text" name="username" value="<?=$user['username']?>">
+                        </td>
+                        <td>
+                            <input type="text" name="password" value="<?=$user['password']?>">
+                        </td>
+                        <td>
+                            <input type="text" name="nationality" value="<?=$user['nationality']?>">
+                        </td>
+                        <td>
+                            <input type="text" name="gender" value="<?=$user['gender']?>">
+                        </td>
+                        <td>
+                            <input type="text" name="address_id" value="<?=$user['address_id']?>">
+                        </td>
+                        <td>
+                            <input type="text" name="agency_id" value="<?=$user['agency_id']?>">
+                        </td>
+                        <td>
+                            <input type="text" name="date" value="<?=$user['date']?>">
+                        </td>
+                        <td>
+                        <button type="submit" name="edit" onclick="return confirm('Are you sure you want to edit this user?')">Edit</button>
+                        </form>
+                    <td><form action="../app/controllers/Address.php" method="post">
+                            <input type="hidden" name="delete_id" value="<?= $user['id'] ?>">
+                            <input type="hidden" name="action" value="deleteUser">
+                            <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                        </form></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

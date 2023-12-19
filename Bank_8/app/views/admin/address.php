@@ -60,6 +60,7 @@
                 <h1 class="text-2xl font-semibold">Welcome to our website</h1>
                 
     <form action="../app/controllers/Address.php" method="post">
+    <input type="hidden" name="action" value="addAddress">
         <input type="text" name="city" id="city" placeholder="city">
         <input type="text" name="district" id="district" placeholder="district">
         <input type="text" name="street" id="street" placeholder="street">
