@@ -19,8 +19,31 @@
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":id", $id);
-            $stmt->bindParam(":name", $name);
-            $stmt->bindParam(":description", $description);
+            $stmt->bindParam(":type", $type);
+            $stmt->bindParam(":amount", $amount);
+            $stmt->bindParam(":account_id", $account_id);
+
+            $stmt->execute();
+
+
+        }
+        public function edit(Transaction $transaction){
+
+            $pdo = $this->connect();
+
+            $id = $transaction->getId();
+            $type = $transaction->getType();
+            $amount = $transaction->getAmount();
+            $account_id = $transaction->getAccount_id();
+            
+            $sql = "UPDATE `transaction` SET `type`=:type,`amount`=:amount,`account_id`=:account_id WHERE `id`=:id";
+
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":name", $type);
+            $stmt->bindParam(":amount", $amount);
+            $stmt->bindParam(":account_id", $account_id);
 
             $stmt->execute();
 

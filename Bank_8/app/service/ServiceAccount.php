@@ -11,10 +11,10 @@
             $pdo = $this->connect();
 
             $id = $account->getId();
-            $rib = $account->getCity();
-            $currency = $account->getDistrict();
-            $balance = $account->getStreet();
-            $user_id = $account->getPostal_code();
+            $rib = $account->getRib();
+            $currency = $account->getCurrency();
+            $balance = $account->getBalance();
+            $user_id = $account->getUser_id();
 
             
             $sql = "INSERT INTO account VALUES (:id, :rib, :currency, :balance, :user_id)";
@@ -26,6 +26,30 @@
             $stmt->bindParam(":balance", $balance);
             $stmt->bindParam(":user_id", $user_id);
 
+
+            $stmt->execute();
+
+
+        }
+        public function edit(Account $account){
+
+            $pdo = $this->connect();
+
+            $id = $account->getId();
+            $rib = $account->getRib();
+            $currency = $account->getCurrency();
+            $balance = $account->getBalance();
+            $user_id = $account->getUser_id();
+            
+            $sql = "UPDATE `account` SET `rib`=:rib,`currency`=:currency,`balance`=:balance,`user_id`=:user_id WHERE `id`=:id";
+
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":rib", $rib);
+            $stmt->bindParam(":currency", $currency);
+            $stmt->bindParam(":balance", $balance);
+            $stmt->bindParam(":user_id", $user_id);
 
             $stmt->execute();
 

@@ -61,6 +61,7 @@
                 
     <form action="../app/controllers/Transaction.php" method="post">
         <input type="enum" name="type" id="type" placeholder="type">
+        <input type="hidden" name="action" value="addTransaction">
         <input type="text" name="amount" id="amount" placeholder="amount">
         <input type="text" name="account_id" id="account_id" placeholder="account_id">
         <input type="submit" name="submit" value="submit">
@@ -84,6 +85,28 @@
                     <td><?=$transaction['type']?></td>
                     <td><?=$transaction['amount']?></td>
                     <td><?=$transaction['account_id']?></td>
+                    <form action="" method="post">
+                        <input type="hidden" name="action" value="editTransaction">
+                        <input type="hidden" name="id" value="<?=$transaction['id']?>">
+                        <td>
+                            <input type="text" name="type" value="<?=$transaction['type']?>">
+                        </td>
+                        <td>
+                            <input type="text" name="amount" value="<?=$transaction['amount']?>">
+                        </td>
+                        <td>
+                            <input type="text" name="account_id" value="<?=$transaction['account_id']?>">
+                        </td>
+                        <td>
+                        <button type="submit" name="edit" onclick="return confirm('Are you sure you want to edit this permission?')">Edit</button>
+                        </form>
+                        
+                        <form action="../app/controllers/Transaction.php" method="post">
+                            <input type="hidden" name="delete_id" value="<?= $transaction['id'] ?>">
+                            <input type="hidden" name="action" value="deleteTransaction">
+                            <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this permission?')">Delete</button>
+                        </form>
+                        </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

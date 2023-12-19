@@ -27,33 +27,33 @@
             return $this->id;
         }
 
-        public function setCity($rib){
+        public function setRib($rib){
             $this->rib = $rib;
         }
 
-        public function getCity(){
+        public function getRib(){
             return $this->rib;
         }
-        public function setDistrict($currency){
+        public function setCurrency($currency){
             $this->currency = $currency;
         }
 
-        public function getDistrict(){
+        public function getCurrency(){
             return $this->currency;
         }
-        public function setStreet($balance){
+        public function setBalance($balance){
             $this->balance = $balance;
         }
 
-        public function getStreet(){
+        public function getBalance(){
             return $this->balance;
         }
 
-        public function setPostal_code($user_id){
+        public function setUser_id($user_id){
             $this->user_id = $user_id;
         }
 
-        public function getPostal_code(){
+        public function getUser_id(){
             return $this->user_id;
         }
 

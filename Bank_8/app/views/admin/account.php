@@ -61,6 +61,7 @@
                 
     <form action="../app/controllers/Account.php" method="post">
         <input type="text" name="rib" id="rib" placeholder="rib">
+        <input type="hidden" name="action" value="addAccount">
         <input type="text" name="currency" id="currency" placeholder="currency">
         <input type="text" name="balance" id="balance" placeholder="balance">
         <input type="text" name="user_id" id="user_id" placeholder="user_id">
@@ -87,6 +88,29 @@
                     <td><?=$account['currency']?></td>
                     <td><?=$account['balance']?></td>
                     <td><?=$account['user_id']?></td>
+                    <form action="" method="post">
+                        <input type="hidden" name="action" value="editAccount">
+                        <input type="hidden" name="id" value="<?=$account['id']?>">
+                        <td>
+                            <input type="text" name="rib" value="<?=$account['rib']?>">
+                        </td>
+                        <td>
+                            <input type="text" name="currency" value="<?=$account['currency']?>">
+                        </td>
+                        <td>
+                            <input type="text" name="balance" value="<?=$account['balance']?>">
+                        </td>
+                        <td>
+                            <input type="text" name="user_id" value="<?=$account['user_id']?>">
+                        </td>
+                        <td>
+                        <button type="submit" name="edit" onclick="return confirm('Are you sure you want to edit this account?')">Edit</button>
+                        </form>
+                    <td><form action="../app/controllers/Account.php" method="post">
+                            <input type="hidden" name="delete_id" value="<?= $account['id'] ?>">
+                            <input type="hidden" name="action" value="deleteAccount">
+                            <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this account?')">Delete</button>
+                        </form></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
