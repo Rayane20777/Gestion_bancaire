@@ -57,8 +57,6 @@
         
         $accounts = $service->display();
 
-
-
     }
 
 

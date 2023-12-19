@@ -57,6 +57,28 @@
         header("Location: ../../public/user.php");
 
 
+    }else if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action']=='login'){
+
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $service = new Service();
+        
+        $service->login($username, $password);
+
+        // var_dump($_SESSION["userId"],$_SESSION["username"],$_SESSION["role"]);
+        // die;
+        if ($_SESSION["role"] == "admin") {
+            header("location: ../../public/bank.php");
+        }
+        if ($_SESSION["role"] == "client") {
+            header("location: ../../public/home.php");
+        }
+        if ($_SESSION["role"] == "subAdmin") {
+            header("location: ../../public/account.php");
+        }
+
+
     } else {
         
         $service = new Service();
